@@ -23,8 +23,8 @@
 
 int main(void)
 {
-    const char *fileNameRaw = "/var/soil/raw_current";
-    const char *fileNameVolt = "/var/soil/voltage_current";
+    const char *fileNameRaw = "/var/tmp/raw_current";
+    const char *fileNameVolt = "/var/tmp/voltage_current";
     ssize_t nr;
 
     int fd = open(I2C_DEV_PATH, O_RDWR);
