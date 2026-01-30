@@ -40,8 +40,13 @@ func (c *SoilSensor) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 
 	data, err := os.ReadFile(fileName)
 	if err != nil {
-		log.Fatal(err)
+		c.l.Printf("Error reading sensor file %s: %v", fileName, err)
+
+		rw.WriteHeader(http.StatusServiceUnavailable)
+		fmt.Fprint(rw, "-1\n")
+		return
 	}
+
 	content := string(data)
 
 	fmt.Fprint(rw, content)
